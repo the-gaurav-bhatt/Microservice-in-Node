@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js --prefix posts\" \"nodemon index.js --prefix comments\"",
+    "start": "concurrently \"nodemon index.js --prefix posts\" \"nodemon index.js --prefix comments\" \"nodemon index.js --prefix event-bus\" \"nodemon index.js --prefix query\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

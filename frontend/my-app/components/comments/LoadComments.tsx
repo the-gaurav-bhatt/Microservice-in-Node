@@ -10,7 +10,7 @@ const LoadComments = async ({ id }: idType) => {
   try {
     const res = await fetch(`http://localhost:4000/posts/${id}/comments`);
     if (!res.ok) {
-      throw new Error(`Failed to fetch comments for post ${id}`);
+      throw new Error(`No comments for post ${id}`);
     }
 
     const data: LoadCommentType = await res.json();
@@ -21,7 +21,7 @@ const LoadComments = async ({ id }: idType) => {
         {data.map((comment: commentType) => (
           <div
             key={comment.id}
-            className="p-4 bg-white rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105"
+            className="p-4  bg-purple-200 rounded-lg shadow-md transition-transform duration-500 ease-in-out transform hover:scale-105"
           >
             <p className="text-lg text-gray-700">{comment.content}</p>
           </div>
@@ -29,8 +29,7 @@ const LoadComments = async ({ id }: idType) => {
       </div>
     );
   } catch (error) {
-    console.error(error);
-    return <div>No Comments found</div>;
+    return <div>0 Comments found</div>;
   }
 };
 

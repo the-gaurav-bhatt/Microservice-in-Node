@@ -15,12 +15,13 @@ const CreateComment = ({ id }: idType) => {
       body: JSON.stringify({ content: comment }),
     });
     console.log(await res.json());
+    setComment("");
   };
   return (
     <div className="flex items-center justify-center h-fit bg-gray-200">
       <form
-        onSubmit={handleSubmit}
         className="p-10 bg-white rounded shadow-md w-96"
+        onSubmit={handleSubmit}
       >
         <div className="mb-5 space-y-2">
           <label className="text-sm font-medium text-gray-600">Comment</label>
