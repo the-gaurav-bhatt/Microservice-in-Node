@@ -28,7 +28,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   // giving it to event-bus incase anyone else need it
   await axios.post("http://localhost:4003/event", {
     type: "CommentCreated",
-    data: { id: commentId, content, postId: id },
+    data: { id: commentId, content, postId: id, status: "pending" },
   });
   return res.status(201).send(comments);
 });

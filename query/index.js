@@ -20,10 +20,22 @@ app.post("/events", (req, res) => {
     posts.push({ id, title, comments: [] });
   }
   if (type === "CommentCreated") {
-    const { id, content, postId } = data;
+    const { id, content, postId, status } = data;
     const post = posts.find((post) => post.id === postId);
     if (post) {
-      post.comments.push({ id, content });
+      post.comments.push({ id, content, status });
+    }
+  }
+  if (type === "CommentModerated") {
+    const { id, content, postId, status } = data;
+    const post = posts.find((post) => post.id === postId);
+    if (post) {
+      const comment = post.comments.find((comment) => comment.id === id);
+
+      if (comment) {
+        comment.status = status;
+        console.log("Comment Status modified inside Query");
+      }
     }
   }
   console.log(posts);

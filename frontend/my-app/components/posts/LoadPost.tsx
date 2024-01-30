@@ -1,8 +1,10 @@
 import CreateComment from "../comments/CreateComment";
 import LoadComments from "../comments/LoadComments";
+import { commentType } from "../comments/LoadComments";
 type postType = {
   id: string;
   title: String;
+  comments: [commentType];
 };
 type LoadPostType = [postType];
 
@@ -13,16 +15,18 @@ const LoadPosts = async () => {
     cache: "no-cache",
   });
   const data = await res.json();
-  console.log("Post Loaded dada again", data);
+  const finalData: LoadPostType = data.posts;
   return (
     <div className="space-y-6 bg-gray-100 p-6 grid grid-cols-3 gap-3 rounded-lg shadow-md">
-      {data.posts.map((post: any) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <LoadComments id={post.id} />
-          <CreateComment id={post.id} />
-        </div>
-      ))}
+      {finalData.length > 0 &&
+        finalData.map((post: postType) => (
+          <div key={post.id}>
+            <h2>{post.title}</h2>
+            {/* post and comment loading is done by the backend query service */}
+            <LoadComments comments={post.comments} />
+            <CreateComment id={post.id} />
+          </div>
+        ))}
     </div>
   );
 };
