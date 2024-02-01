@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: query
+  template:
+    metadata:
+      labels:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: gauri65/query:latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "0.2"
+
+---
+# for inside world communication (between pods)
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-ip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: query
+  ports:
+    - name: query
+      port: 4002
+      protocol: TCP
+      targetPort: 4002

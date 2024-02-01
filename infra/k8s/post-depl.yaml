@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: posts
+  template:
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: gauri65/posts:latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: "0.2"
+---
+# for Outside world communication (pod and browser maybe?)
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: post-node-srv
+spec:
+  type:
+    NodePort # Nodeport will be used to communicate to outer world
+    # Another is ClusterIp that can be used to let communicate with Pods
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      port: 4001
+      protocol: TCP
+      targetPort: 4001
+---
+# for inside world communication (between pods)
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-ip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      port: 4001
+      protocol: TCP
+      targetPort: 4001
