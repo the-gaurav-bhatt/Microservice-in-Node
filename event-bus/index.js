@@ -25,5 +25,6 @@ app.post("/event", async (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log("Listening in event-bus....");
   console.log("Listening on port " + PORT);
 });

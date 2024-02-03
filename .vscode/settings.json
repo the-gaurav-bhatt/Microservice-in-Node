@@ -1,5 +1,6 @@
 {
   "yaml.schemas": {
-    "kubernetes://schema/apps/v1@deployment": "file:///c%3A/Users/bhatt/Desktop/Advanced%20Microservice%20using%20Node%20and%20React/Scratch%20Learn/infra/k8s/post-depl.yaml"
+    "kubernetes://schema/apps/v1@deployment": "file:///c%3A/Users/bhatt/Desktop/Advanced%20Microservice%20using%20Node%20and%20React/Scratch%20Learn/infra/k8s/post-depl.yaml",
+    "https://raw.githubusercontent.com/GoogleContainerTools/skaffold/main/docs-v2/content/en/schemas/v3.json": "file:///c%3A/Users/bhatt/Desktop/Advanced%20Microservice%20using%20Node%20and%20React/Scratch%20Learn/skaffold.yaml"
   }
 }

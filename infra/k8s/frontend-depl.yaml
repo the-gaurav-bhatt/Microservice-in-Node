@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-posts
+spec:
+  selector:
+    matchLabels:
+      app: frontend-posts
+  template:
+    metadata:
+      labels:
+        app: frontend-posts
+    spec:
+      containers:
+        - name: frontend-posts
+          image: gauri65/frontend-posts
+          resources:
+            limits:
+              memory: 256Mi
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-posts-srv
+spec:
+  selector:
+    app: frontend-posts
+  ports:
+    - name: test
+      port: 3000
+      targetPort: 3000
+      protocol: TCP

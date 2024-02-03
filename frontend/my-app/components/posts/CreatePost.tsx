@@ -7,7 +7,7 @@ const CreatePost = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     // Handle the submission of your post data
-    const res = await fetch("http://localhost:4001/posts", {
+    const res = await fetch("http://kxakta.com/posts/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

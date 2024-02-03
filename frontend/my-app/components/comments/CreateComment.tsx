@@ -7,7 +7,7 @@ const CreateComment = ({ id }: idType) => {
   const [comment, setComment] = useState("");
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:4000/posts/${id}/comments`, {
+    const res = await fetch(`http://kxakta.com/posts/${id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
