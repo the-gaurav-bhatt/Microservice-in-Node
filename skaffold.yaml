@@ -12,16 +12,16 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: "*.js"
-            src: .
+          - src: "index.js"
+            dest: .
     - image: gauri65/event-bus
       context: event-bus
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: "*.js"
-            src: .
+          - src: "index.js"
+            dest: .
     - image: gauri65/moderation
       context: moderation
       docker:
@@ -32,16 +32,16 @@ build:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: "*.js"
-            src: .
+          - src: "index.js"
+            dest: .
     - image: gauri65/query
       context: query
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - dest: "*.js"
-            src: .
+          - src: "index.js"
+            dest: .
     - image: gauri65/frontend-posts
       context: ./frontend/my-app
       docker:

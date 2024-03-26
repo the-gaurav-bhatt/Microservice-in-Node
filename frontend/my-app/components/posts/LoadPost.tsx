@@ -1,7 +1,7 @@
 import CreateComment from "../comments/CreateComment";
 import LoadComments from "../comments/LoadComments";
 import { commentType } from "../comments/LoadComments";
-
+import axios from "axios";
 type postType = {
   id: string;
   title: String;
@@ -13,12 +13,8 @@ type LoadPostType = [postType];
 const LoadPosts = async () => {
   console.log("Loading Posts....");
   try {
-    const res = await fetch(`http://kxakta.com/posts`, {
-      method: "GET",
-      cache: "no-cache",
-    });
-    const data = await res.json();
-    const finalData: LoadPostType = data.posts;
+    const res = await axios.get(`http://kxakta.com/posts`);
+    const finalData: LoadPostType = res.data.posts; // Access data directly
     return (
       <div className="space-y-6 bg-gray-100 p-6 grid grid-cols-3 gap-3 rounded-lg shadow-md">
         {finalData.length > 0 &&
